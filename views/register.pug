@@ -4,8 +4,11 @@ block content
     div.loginContainer
         h1 Register
         form(action="", method="POST") 
-            input(type="text", name="username", placeholder="Username", required="")
-            input(type="password", name="password", placeholder="Password", required="")
+
+            p.errorMessage #{errorMessage} 
+
+            input(type="text", name="username", placeholder="Username", value=username, required="")
+            input(type="password", name="password", placeholder="Password", value=password, required="")
             input(type="submit", value="Register")
         br
         a(href="/login") Already have an account? Login here.
