@@ -22,8 +22,15 @@ app.set("view engine", "pug");
 app.set("views", "views");
 // Tells the server that when it needs a view page (a template), go to the folder called "views" to look for the file.
 
+// ROUTES
+const loginRoute = require("./routes/loginRoutes");
+// Declares the loginRoute
+
+app.use("/login", loginRoute);
+// Tells app.js to use the loginRoute that's in the loginRoutes.js file, to handle any request to "/login" route.
+
 app.get("/", (req, res, next) => {
-    
+
     var payload = {
         pageTitle: "Home"
         // We will dynamically change the page title of the page home.pug by passing data (a great thing that PUG offers)
