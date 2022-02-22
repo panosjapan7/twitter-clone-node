@@ -14,19 +14,23 @@ const path = require("path");
 const bodyParser = require("body-parser");
 // Uses body-parser package
 // When we submit a form, the data that's sent to the server is sent in the request body. So we need to get it from the body.
-const mongoose = require("mongoose");
-// Allows us to use the mongoose package.
 
-mongoose.connect("mongodb://localhost/twitter-clone-users")
-//Connects the TwitterCloneDB MongoDB database - (Don't forget to start Docker!)
-.then(() => {
-    console.log("Database connection successful")
-})
-//If connection is successful, it runs the code in then()
-.catch((err) => {
-    console.log("Database connection error" + err)
-})
-//If connection is unsuccessful, it runs the code in catch()
+// const mongoose = require("mongoose");
+// Allows us to use the mongoose package.
+const mongoose = require("./database");
+// Allows us to use the mongoose package.
+// Returns the same instance of the Database object in database.js, connecting us to the local MongoDB db.
+
+// mongoose.connect("mongodb://localhost/twitter-clone-users")
+// //Connects the TwitterCloneDB MongoDB database - (Don't forget to start Docker!)
+// .then(() => {
+//     console.log("Database connection successful")
+// })
+// //If connection is successful, it runs the code in then()
+// .catch((err) => {
+//     console.log("Database connection error" + err)
+// })
+// //If connection is unsuccessful, it runs the code in catch()
 
 const server = app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
