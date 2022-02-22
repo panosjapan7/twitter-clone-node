@@ -5,19 +5,28 @@
 
 const express = require("express");
 // Declares Express dependency and tells Node that we're using Express with this file.
-
 const app = express();
 // Initializes Express by making app variable an instance of the Express object
-
 const PORT = 7000;
 // Creates the port that the server of this app will run on.
-
 const path = require("path"); 
 // Uses the built-in path library, which I'll use to serve static files like images, css files etc.
-
 const bodyParser = require("body-parser");
 // Uses body-parser package
 // When we submit a form, the data that's sent to the server is sent in the request body. So we need to get it from the body.
+const mongoose = require("mongoose");
+// Allows us to use the mongoose package.
+
+mongoose.connect("mongodb://localhost/twitter-clone-users")
+//Connects the TwitterCloneDB MongoDB database - (Don't forget to start Docker!)
+.then(() => {
+    console.log("Database connection successful")
+})
+//If connection is successful, it runs the code in then()
+.catch((err) => {
+    console.log("Database connection error" + err)
+})
+//If connection is unsuccessful, it runs the code in catch()
 
 const server = app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
