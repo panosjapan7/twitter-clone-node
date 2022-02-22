@@ -24,8 +24,14 @@ app.set("views", "views");
 
 app.get("/", (req, res, next) => {
     
-    res.status(200).render("home.pug");
+    var payload = {
+        pageTitle: "Home"
+        // We will dynamically change the page title of the page home.pug by passing data (a great thing that PUG offers)
+    }
+
+    res.status(200).render("home.pug", payload);
     //200 HTTP response is for 'success'; it means all is okay.
+    //Sends the payload object to the page home.ejs
 
 });
 // When someone accesses the server we use with a GET request and the path is the root of the website ("/"), execute the code that's in the arrow function.
