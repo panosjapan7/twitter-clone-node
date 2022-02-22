@@ -33,9 +33,13 @@ app.use(express.static(path.join(__dirname, "public")));
 // ROUTES
 const loginRoute = require("./routes/loginRoutes");
 // Declares the loginRoute
+const registerRoute = require("./routes/registerRoutes");
+// Declares the registerRoute
 
 app.use("/login", loginRoute);
-// Tells app.js to use the loginRoute that's in the loginRoutes.js file, to handle any request to "/login" route.
+// Tells app.js to use the const "loginRoute" that points to the loginRoutes.js file's code, to handle any request to "/login" route.
+app.use("/register", registerRoute);
+// Tells app.js to use the const "registerRoute" that points to the registerRoutes.js file's code, to handle any request to "/register" route.
 
 app.get("/", (req, res, next) => {
 
