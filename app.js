@@ -12,6 +12,9 @@ const app = express();
 const PORT = 7000;
 // Creates the port that the server of this app will run on.
 
+const path = require("path"); 
+// Uses the built-in path library, which I'll use to serve static files like images, css files etc.
+
 const server = app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
 })
@@ -21,6 +24,11 @@ app.set("view engine", "pug");
 // Tells our server which template engine we're going to use to display web pages.
 app.set("views", "views");
 // Tells the server that when it needs a view page (a template), go to the folder called "views" to look for the file.
+
+app.use(express.static(path.join(__dirname, "public")));
+// I needed this code to load the login.css file in the login-layout.page;
+// Specifies that any files inside the folder 'public' will be served as static files.
+// (static files can be accessed directly by typing the path in the browser - like image files, for example.)
 
 // ROUTES
 const loginRoute = require("./routes/loginRoutes");
