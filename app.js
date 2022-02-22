@@ -15,6 +15,10 @@ const PORT = 7000;
 const path = require("path"); 
 // Uses the built-in path library, which I'll use to serve static files like images, css files etc.
 
+const bodyParser = require("body-parser");
+// Uses body-parser package
+// When we submit a form, the data that's sent to the server is sent in the request body. So we need to get it from the body.
+
 const server = app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
 })
@@ -29,6 +33,11 @@ app.use(express.static(path.join(__dirname, "public")));
 // I needed this code to load the login.css file in the login-layout.page;
 // Specifies that any files inside the folder 'public' will be served as static files.
 // (static files can be accessed directly by typing the path in the browser - like image files, for example.)
+app.use(bodyParser.urlencoded({ extended: false }));
+// Tells the app to use body-parser; "extended: false" is a setting and it means that the body 
+// will be able to contain only key value pairs made up of strings or arrays (not all types of data).
+// (Make sure to place the "app uses body-parser" code before you write the code that uses the routes (app.use("/register"...) )
+
 
 // ROUTES
 const loginRoute = require("./routes/loginRoutes");
