@@ -8,6 +8,9 @@ const bodyParser = require("body-parser");
 // Uses body-parser package
 // When we submit a form, the data that's sent to the server is sent in the request body. So we need to get it from the body.
 
+const User = require("../schemas/UserSchema"); 
+// Allows us to user the UserSchema from this file.
+
 app.set("view engine", "pug");
 // Tells our server which template engine we're going to use to display web pages.
 app.set("views", "views");
@@ -30,7 +33,7 @@ router.get("/", (req, res, next) => {
 
 });
 
-router.post("/", (req, res, next) => {
+router.post("/", async (req, res, next) => {
 //Because in the form in register.pug we use a POST method to submit the data, we use router.post (instead router.get)
 
         console.log(req.body);
@@ -44,14 +47,47 @@ router.post("/", (req, res, next) => {
         if(username && password) {
         // If those variables are not null, proceed to the next step of registration
             
+            var user = await User.findOne({ username: username })
+            // Makes sure that no user exists in our db with the username the user just submitted via the form.
+            // It goes to the MongoDb db and checks if any row has the "username" tht the user just submitted via the form.
+            
+            .catch((error) => {
+                console.log(error);
+                payload.errorMessage = "Something went wrong.";
+                // It means that there was an error with the MongoDb db
+                //Inserts the variable "errorMessage" to the body so that we can send it to register.pug via "payload" & render it there.
+                res.status(200).render("register.pug", payload);
+                // Renders again the register web page, so that the user can try to register again and
+                // sends the payload to that page; the payload now contains the errorMessage value.
+            })
+            // This query returns a promise so I'm going to use .catch()
+
+            if(User == null){
+            // If no username was found in the Mongo db, it means that we can proceed and create the new user.
+
+                
+            }
+            else {
+                // User found that matches that username
+                if(username == user.username){
+                // "username" is the value that the user typed in the form; "user.username" is the value that was found in the db.
+                    payload.errorMessage = "Username already in use."
+                }
+                res.status(200).render("register.pug", payload);
+                // Renders again the register web page, so that the user can try to register again and
+                // sends the payload to that page; the payload now contains the errorMessage value.
+            }
+            
+            
         }
         else {
         // If any of those two variables are null, execute the code below
             
             payload.errorMessage = "Fields cannot be empty.";
-            //Inserts the variable "errorMessage" to the body so that we can send it to register.pug via "payload" page & render it there.
+            //Inserts the variable "errorMessage" to the body so that we can send it to register.pug via "payload" & render it there.
             res.status(200).render("register.pug", payload);
-            // Renders again the register web page, so that the user can try to register again & sends the payload to that page.
+            // Renders again the register web page, so that the user can try to register again and 
+            // sends the payload to that page; the payload now contains the errorMessage value.
         }
 
         //200 HTTP response is for 'success'; it means all is okay.
