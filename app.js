@@ -21,6 +21,9 @@ const mongoose = require("./database");
 // Allows us to use the mongoose package.
 // Returns the same instance of the Database object in database.js, connecting us to the local MongoDB db.
 
+const session = require("express-session");
+// Allows us to use the express-session package.
+
 // mongoose.connect("mongodb://localhost/twitter-clone-users")
 // //Connects the TwitterCloneDB MongoDB database - (Don't forget to start Docker!)
 // .then(() => {
@@ -51,6 +54,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // will be able to contain only key value pairs made up of strings or arrays (not all types of data).
 // (Make sure to place the "app uses body-parser" code before you write the code that uses the routes (app.use("/register"...) )
 
+app.use(session({
+    secret: "hello panos", // Hashes the session, by hashing the string we declare here.
+    resave: true, // Forces the session to be saved even if it wasn't modified.
+    saveUninitialized: false // Prevents from saving the session uninitialized.
+}));
+// Set the app to use sessions by creating an instance of the package and pass in options
 
 // ROUTES
 const loginRoute = require("./routes/loginRoutes");
