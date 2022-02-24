@@ -7,10 +7,8 @@ const router = express.Router();
 const bodyParser = require("body-parser");
 // Uses body-parser package
 // When we submit a form, the data that's sent to the server is sent in the request body. So we need to get it from the body.
-
 const bcrypt = require("bcrypt");
 // Allows the file to use brcypt
-
 const User = require("../schemas/UserSchema"); 
 // Allows us to user the UserSchema from this file.
 
