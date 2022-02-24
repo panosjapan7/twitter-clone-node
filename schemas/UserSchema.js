@@ -28,7 +28,7 @@ const UserSchema = new  Schema({
         type: String,
         default: "/images/profilePic.png",
     }
-});
+}, { timestamps: true }); // Adds a timestamp to every entry in the db; prettty easy to implement!
 // Creates the schema for our user collection. In the parentheses we pass in the options (the columns and data types);
 
 var User = mongoose.model("User", UserSchema);
