@@ -88,7 +88,7 @@ router.post("/", async (req, res, next) => {
                     // console.log(user);
                     req.session.user = user;
                     // Stores the newly created user in the session at the "user" property.
-                    return res.redirect("/");
+                    return res.redirect("/home");
                     // Redirects the user to the home page
                 })
                 
