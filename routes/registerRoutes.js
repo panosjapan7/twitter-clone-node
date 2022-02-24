@@ -85,7 +85,11 @@ router.post("/", async (req, res, next) => {
                 // Creates an object of the type that we declared in UserSchema.js (const UserSchema)
                 // and saves it in the db assigned to "User" (which is our MongoDb db, connected with mongoose)
                 .then((user) => {
-                    console.log(user);
+                    // console.log(user);
+                    req.session.user = user;
+                    // Stores the newly created user in the session at the "user" property.
+                    return res.redirect("/");
+                    // Redirects the user to the home page
                 })
                 
             }
