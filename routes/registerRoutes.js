@@ -8,6 +8,9 @@ const bodyParser = require("body-parser");
 // Uses body-parser package
 // When we submit a form, the data that's sent to the server is sent in the request body. So we need to get it from the body.
 
+const bcrypt = require("bcrypt");
+// Allows the file to use brcypt
+
 const User = require("../schemas/UserSchema"); 
 // Allows us to user the UserSchema from this file.
 
@@ -43,12 +46,14 @@ router.post("/", async (req, res, next) => {
         // Not sure if I need these two variable below
         var firstName = req.body.firstName;
         var lastName = req.body.lastName;
-        
+
         //Prevents the user from registering with a username or password that is a string that consists of spaces.
         // trim() removes spaces before and after a string value
         var payload = req.body;
         // Variables that contains all the values that the user submitted via the form.
 
+
+        // CHECKS IF A USER WAS FOUND
         if(username && password) {
         // If those variables are not null, proceed to the next step of registration
             
@@ -72,6 +77,9 @@ router.post("/", async (req, res, next) => {
 
                 var data = req.body;
                 // we give "data" the values we want to add to a new user entry that is added to our MongoDB db.
+
+                data.password = await bcrypt.hash(password, 10);
+                // hashes the password
 
                 User.create(data)
                 // Creates an object of the type that we declared in UserSchema.js (const UserSchema)
