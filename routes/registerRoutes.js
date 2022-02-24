@@ -38,7 +38,12 @@ router.post("/", async (req, res, next) => {
 
         console.log(req.body);
         var username = req.body.username.trim();
-        var password = req.body.password.trim();
+        var password = req.body.password;
+
+        // Not sure if I need these two variable below
+        var firstName = req.body.firstName;
+        var lastName = req.body.lastName;
+        
         //Prevents the user from registering with a username or password that is a string that consists of spaces.
         // trim() removes spaces before and after a string value
         var payload = req.body;
@@ -49,7 +54,7 @@ router.post("/", async (req, res, next) => {
             
             var user = await User.findOne({ username: username })
             // Makes sure that no user exists in our db with the username the user just submitted via the form.
-            // It goes to the MongoDb db and checks if any row has the "username" tht the user just submitted via the form.
+            // It goes to the MongoDb db and checks if any row has the "username" that the user just submitted via the form.
             
             .catch((error) => {
                 console.log(error);
@@ -62,9 +67,18 @@ router.post("/", async (req, res, next) => {
             })
             // This query returns a promise so I'm going to use .catch()
 
-            if(User == null){
+            if(user == null){
             // If no username was found in the Mongo db, it means that we can proceed and create the new user.
 
+                var data = req.body;
+                // we give "data" the values we want to add to a new user entry that is added to our MongoDB db.
+
+                User.create(data)
+                // Creates an object of the type that we declared in UserSchema.js (const UserSchema)
+                // and saves it in the db assigned to "User" (which is our MongoDb db, connected with mongoose)
+                .then((user) => {
+                    console.log(user);
+                })
                 
             }
             else {
