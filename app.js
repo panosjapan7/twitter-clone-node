@@ -62,6 +62,7 @@ app.use(session({
 // Set the app to use sessions by creating an instance of the package and pass in options
 
 // ROUTES
+const rootRoute = require("./routes/rootRoutes")
 const loginRoute = require("./routes/loginRoutes");
 // Declares the loginRoute
 const registerRoute = require("./routes/registerRoutes");
@@ -71,8 +72,9 @@ app.use("/login", loginRoute);
 // Tells app.js to use the const "loginRoute" that points to the loginRoutes.js file's code, to handle any request to "/login" route.
 app.use("/register", registerRoute);
 // Tells app.js to use the const "registerRoute" that points to the registerRoutes.js file's code, to handle any request to "/register" route.
+app.use("/", rootRoute);
 
-app.get("/", (req, res, next) => {
+app.get("/home", (req, res, next) => {
 
     var payload = {
         pageTitle: "Home",
@@ -88,3 +90,4 @@ app.get("/", (req, res, next) => {
 });
 // When someone accesses the server we use with a GET request and the path is the root of the website ("/"), execute the code that's in the arrow function.
 // req(the request that's incoming to this path "/"), res(response -  the data we send back to the user), next(handles any middleware)
+
