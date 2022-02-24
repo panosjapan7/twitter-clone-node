@@ -75,8 +75,10 @@ app.use("/register", registerRoute);
 app.get("/", (req, res, next) => {
 
     var payload = {
-        pageTitle: "Home"
+        pageTitle: "Home",
         // We will dynamically change the page title of the page home.pug by passing data (a great thing that PUG offers)
+        userLoggedIn: req.session.user
+        // It gives us the information (username, firstName etc.) of the user that logged in.
     }
 
     res.status(200).render("home.pug", payload);
