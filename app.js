@@ -71,6 +71,10 @@ const rootRoute = require("./routes/rootRoutes")
 const logoutRoute = require("./routes/logoutRoutes");
 // Declares the logoutRoute
 
+// API ROUTES
+const postsApiRoute = require("./routes/api/posts.js");
+// Declares the postsApiRoute
+
 app.use("/login", loginRoute);
 // Tells app.js to use the const "loginRoute" that points to the loginRoutes.js file's code, to handle any request to "/login" route.
 app.use("/register", registerRoute);
@@ -79,6 +83,11 @@ app.use("/", rootRoute);
 // Tells app.js to use the const "rootRoute" that points to the rootRoutes.js file's code, to handle any request to "/root" route.
 app.use("/logout", logoutRoute);
 // Tells app.js to use the const "logoutRoute" that points to the logoutRoutes.js file's code, to handle any request to "/logout" route.
+
+// app.use for API
+app.use("/api/posts", postsApiRoute);
+// Tells app.js to use the const "postsApiRoute" that points to the routes/api/posts.js file's code, to handle any request to "/posts/api" route.
+
 
 app.get("/home", (req, res, next) => {
 
