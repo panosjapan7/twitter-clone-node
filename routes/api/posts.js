@@ -30,6 +30,15 @@ router.get("/", (req, res, next) => {
 router.post("/", async (req, res, next) => {
 // Handles POST requests at the root level ("/") to execute the code that's in it.
 
+    if(!req.body.content){
+    // Checks if content was not sent
+        console.log("Content param not sent with request");
+
+        return res.sendStatus(400);
+        // Informs the user with a Bad Request status and ends the post request (so that it won't continue to execute the code below)
+    }
+
+
     res.status(200).send("It worked!");
     //Testing if post of submit button works
     
