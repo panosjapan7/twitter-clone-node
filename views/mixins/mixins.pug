@@ -1,0 +1,10 @@
+//- Mixins are functions that produce resusable blocks of code. We will put all of those blocks in this file.
+
+mixin createPostForm(userLoggedIn)
+    div.postFormContainer
+        div.userImageContainer
+            img(src=userLoggedIn.profilePic, alt="User's profile image")
+        div.textareaContainer
+            textarea#postTextarea(placeholder="What's happening?")
+            div.buttonsContainer
+                button#submitPostButton(disabled="") Post
