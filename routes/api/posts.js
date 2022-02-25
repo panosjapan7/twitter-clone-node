@@ -10,6 +10,8 @@ const bodyParser = require("body-parser");
 
 const User = require("../../schemas/UserSchema"); 
 // Allows us to user the UserSchema from this file.
+const Post = require("../../schemas/PostSchema"); 
+// Allows us to user the PostSchema from this file.
 
 app.use(bodyParser.urlencoded({ extended: false }));
 // Tells the app to use body-parser; "extended: false" is a setting and it means that the body 
@@ -38,9 +40,32 @@ router.post("/", async (req, res, next) => {
         // Informs the user with a Bad Request status and ends the post request (so that it won't continue to execute the code below)
     }
 
+    var postData = {
+    // Saves the data that was submitted by the user via the textform and saves it as an object called "postData"
+        
+        content: req.body.content,
+        postedBy: req.session.user
+    }
 
-    res.status(200).send("It worked!");
-    //Testing if post of submit button works
+    Post.create(postData)
+    // Creates the post
+    .then(async (newPost) => {
+    // .then() is called when "Post.create(postData)" successfully completes.
+        
+        newPost = await User.populate(newPost, { path: "postedBy" });
+        // Populates the postedBy field using the "User" schema
+
+        res.status(201).send(newPost)
+        // If creating the post succeeds, it will send a 201 status and the data of the newly created post (newPost).
+        // 201 status means "Created"
+
+    })
+
+    .catch((error) => {
+    // .catch() is called if "Post.create(postData)" doesn't complete successfully and something went wrong with it.
+        console.log(error);
+        res.sendStatus(400);
+    })
     
 });
 
