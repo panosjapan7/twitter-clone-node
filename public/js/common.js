@@ -38,16 +38,28 @@ $("#submitPostButton").click(() => {
         content: textbox.val()
     }
 
-    $.post("/api/posts", data, (postData, status, xhr) => {
+    $.post("/api/posts", data, (postData) => {
     // Makes an AJAX request which sends the data to server without us needing to reload the page.
     // $.post() means I am submitting AJAX request.
     // We're sending the contents of var "data" to the url "/api/post" and when it's done it will return with 
-        // the contents of postData, status and xhr, and then it will execute the code below
-        // xhr stands for XML HTTP REQUEST; it will contain the status of the request (ie 200 if POST is successful)
+        // the contents of postData and then it will execute the code below
 
-        console.log(postData);
+        var html = createPostHtml(postData);
+        // Invokes the function we created below
         
+        $(".postsContainer").prepend(html);
+        // we use prepend because it adds it to the beginning - the top, unlike append which adds it to the end.
+        
+        textbox.val("");
+        // Clears the textbox after the user has submitted a post
+        
+        button.prop("disabled", true);
+        // Manually make the submnit button 'disabled'
 
     })
 
 })
+
+function createPostHtml(postData) {
+    return postData.content;
+}
