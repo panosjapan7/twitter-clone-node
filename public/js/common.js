@@ -1,5 +1,6 @@
 // common.js will include all the shared js code between our site will be
 
+
 $("#postTextarea").keyup((event) => {
 // this function will fire off when the user selects the textarea and presses a key on the keyboard.
     var textbox = $(event.target);
@@ -60,6 +61,28 @@ $("#submitPostButton").click(() => {
 
 })
 
+
+
 function createPostHtml(postData) {
-    return postData.content;
+    
+    var postedBy = postData.postedBy;
+
+    return `<div class="post">
+                <div class="mainContentContainer">
+                    <div class="userImageContainer">
+                        <img src="${postedBy.profilePic}">
+                    </div>
+                    <div class="postContentContainer">
+                        <div class="header">
+                        
+                        </div>
+                        <div class="body">
+                            <span>${postData.content}</span>
+                        </div>
+                        <div class="postFooter">
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>`
 }
