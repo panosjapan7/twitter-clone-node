@@ -1,4 +1,8 @@
 extends layouts/main-layout.pug
 block content
     h1 This is an h1 in the home.pug page
-    p Username of logged in user: #{userLoggedIn.username}
+    //- p Username of logged in user: #{userLoggedIn.username}
+    +createPostForm(userLoggedIn)
+    //- We put a '+' to call the function. Now everything that function createPostForm() outputs, will be injected here.
+
+
