@@ -27,3 +27,31 @@ $("#postTextarea").keyup((event) => {
     // Checks if the value in the textbox is empty, and sets the submit button to enabled if it's not empty.
 })
 
+$("#submitPostButton").click(() => {
+// Handles the button-press. When the submit button is clicked, it will execute the code below.
+    var button = $(event.target);
+    
+    var textbox = $("#postTextarea");
+
+    var data = {
+    // data is going to be an object that contains the information we send to the server via the textform
+        content: textbox.val()
+    }
+
+    $.post("/api/posts", data, (postData, status, xhr) => {
+    // Makes an AJAX request which sends the data to server without us needing to reload the page.
+    // $.post() means I am submitting AJAX request.
+    // We're sending the contents of var "data" to the url "/api/post" and when it's done it will return with 
+        // the contents of postData, status and xhr, and then it will execute the code below
+        // xhr stands for XML HTTP REQUEST; it will contain the status of the request (ie 200 if POST is successful)
+
+        alert(postData);
+        
+
+
+        
+        
+
+    })
+
+})
