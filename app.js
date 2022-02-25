@@ -62,17 +62,23 @@ app.use(session({
 // Set the app to use sessions by creating an instance of the package and pass in options
 
 // ROUTES
-const rootRoute = require("./routes/rootRoutes")
 const loginRoute = require("./routes/loginRoutes");
 // Declares the loginRoute
 const registerRoute = require("./routes/registerRoutes");
 // Declares the registerRoute
+const rootRoute = require("./routes/rootRoutes")
+// Declares the rootRoute
+const logoutRoute = require("./routes/logoutRoutes");
+// Declares the logoutRoute
 
 app.use("/login", loginRoute);
 // Tells app.js to use the const "loginRoute" that points to the loginRoutes.js file's code, to handle any request to "/login" route.
 app.use("/register", registerRoute);
 // Tells app.js to use the const "registerRoute" that points to the registerRoutes.js file's code, to handle any request to "/register" route.
 app.use("/", rootRoute);
+// Tells app.js to use the const "rootRoute" that points to the rootRoutes.js file's code, to handle any request to "/root" route.
+app.use("/logout", logoutRoute);
+// Tells app.js to use the const "logoutRoute" that points to the logoutRoutes.js file's code, to handle any request to "/logout" route.
 
 app.get("/home", (req, res, next) => {
 
