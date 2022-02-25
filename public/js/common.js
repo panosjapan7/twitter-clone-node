@@ -45,11 +45,7 @@ $("#submitPostButton").click(() => {
         // the contents of postData, status and xhr, and then it will execute the code below
         // xhr stands for XML HTTP REQUEST; it will contain the status of the request (ie 200 if POST is successful)
 
-        alert(postData);
-        
-
-
-        
+        console.log(postData);
         
 
     })
