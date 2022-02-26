@@ -66,6 +66,14 @@ $("#submitPostButton").click(() => {
 function createPostHtml(postData) {
     
     var postedBy = postData.postedBy;
+
+    if(postedBy._id === undefined){
+    // If the id is not found on this post, it means that it's not an object yet. It means it's just the ObjectId.
+
+        return console.log("User object not populated");
+        
+    }
+
     var displayName = postedBy.firstName + " " + postedBy.lastName; 
     var timestamp = postData.createdAt;
 
