@@ -26,6 +26,9 @@ router.get("/", (req, res, next) => {
 // The router.get executes the code below.
 
    Post.find() 
+   .populate("postedBy")
+   .sort({ "createdAt": -1 })
+   // sorts "createdAt" in a descending order (1 is for ascending order)
    .then((results) => {
        res.status(200).send(results);
        // gets the results from the endpoint
