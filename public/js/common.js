@@ -76,10 +76,8 @@ function createPostHtml(postData) {
                     </div>
                     <div class="postContentContainer">
                         <div class="header">
-                            <a href="/profile/${postedBy.username}">@${postedBy.username}</a>
-                            </br>
+                            <a class="username" href="/profile/${postedBy.username}">@${postedBy.username}</a>
                             <!-- <span class="username">@${postedBy.username}</span> -->
-                            </br>
                             <span class="date">${timestamp}</span>
                         </div>
                         <div class="body">
