@@ -1,0 +1,11 @@
+extends layouts/main-layout.pug
+block content
+    h1 This is an h1 in the profilePage.pug page
+    //- p Username of logged in user: #{userLoggedIn.username}
+    
+    span #{profileUser.username}
+    //- contains all the posts 
+    div.postsContainer
+
+block scripts
+    script(src="/js/profile.js") 
