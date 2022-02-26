@@ -14,6 +14,8 @@ const path = require("path");
 const bodyParser = require("body-parser");
 // Uses body-parser package
 // When we submit a form, the data that's sent to the server is sent in the request body. So we need to get it from the body.
+const middleware = require('./middleware');
+// Creates the middelware object to use the function requireLogin which is in the middleware.js
 
 // const mongoose = require("mongoose");
 // Allows us to use the mongoose package.
@@ -70,6 +72,8 @@ const rootRoute = require("./routes/rootRoutes")
 // Declares the rootRoute
 const logoutRoute = require("./routes/logoutRoutes");
 // Declares the logoutRoute
+const profileRoute = require("./routes/profileRoutes");
+// Declares the profileRoute
 
 // API ROUTES
 const postsApiRoute = require("./routes/api/posts.js");
@@ -83,6 +87,11 @@ app.use("/", rootRoute);
 // Tells app.js to use the const "rootRoute" that points to the rootRoutes.js file's code, to handle any request to "/root" route.
 app.use("/logout", logoutRoute);
 // Tells app.js to use the const "logoutRoute" that points to the logoutRoutes.js file's code, to handle any request to "/logout" route.
+app.use("/profile", middleware.requireLogin, profileRoute);
+// Tells app.js to use the const "profileRoute" that points to the profileRoutes.js file's code, to handle any request to "/profile" route.
+
+
+
 
 // app.use for API
 app.use("/api/posts", postsApiRoute);
