@@ -30,5 +30,45 @@ router.get("/", (req, res, next) => {
     
 });
 
+router.get("/:username", async (req, res, next) => {
+    // Takes us to another user's profile page
+    // Configures the router we created (const router = express.Router();) 
+        // to handle requests at the root level ("/:username") to execute the code that's in it.
+    // We use router.get and not app.get because the page handles a GET request at the root level,
+        // it's not handling traffic to the server (app.get() is doing that).
+    // The router.get executes the code below.
+    
+    var payload = await getPayload(req.params.username, req.session.user);
+
+    res.status(200).render("profilePage", payload);
+    
+});
+
+async function getPayload(username, userLoggedIn){
+    
+    var user = await User.findOne({ username: username })
+    // it will search the db by "username" to find a user that has this "username" and will fetch the data of that user
+
+    if(user == null){
+    // In case a user with that username doesn't exist, return the values below
+        
+        return {
+            pageTitle: "User not found",
+            userLoggedIn: userLoggedIn,
+            userLoggedInJs: JSON.stringify(userLoggedIn),
+        }
+    }
+
+    return {
+    // If it found a user with that username, return the values below
+
+        pageTitle: user.username,
+        userLoggedIn: userLoggedIn,
+        userLoggedInJs: JSON.stringify(userLoggedIn),
+        profileUser: user
+    }
+
+}
+
 module.exports = router;
 // Exports the router so we can execute the code that's in router.get in other pages.
