@@ -46,3 +46,42 @@
             #submitPostButton:disabled {
                 background-color: #9BD1F9;
             }
+.postsContainer{
+    padding-top: 40px;
+}
+    .post {
+        display: flex;
+        flex-direction: column;
+        padding: 5px;
+        border-bottom: 1px solid lightgray;
+    }
+        .mainContentContainer {
+            display: flex;
+        }
+            .userImageContainer {
+                
+            }
+            .postContentContainer {
+                display: flex;
+                flex-direction: column;
+                
+            }
+                .header {
+                    margin-bottom: 10px;
+                }
+                    .username {
+                        color: gray;
+                        text-decoration: none;
+                        font-weight: bold;
+                    }
+                    .date {
+                        color: gray;
+                    }
+                .body {
+                    font-size: 20px;
+                    letter-spacing: 0.035em;
+                    padding-bottom: 10px;
+                }
+                .postFooter {
+
+                }
