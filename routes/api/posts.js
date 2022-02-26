@@ -25,7 +25,15 @@ router.get("/", (req, res, next) => {
     // it's not handling traffic to the server ( app.get() is doing that ).
 // The router.get executes the code below.
 
-    
+   Post.find() 
+   .then((results) => {
+       res.status(200).send(results);
+       // gets the results from the endpoint
+   })
+   .catch((error) => {
+       console.log(error);
+       res.sendStatus(400);
+   })
 
 });
 
