@@ -98,7 +98,7 @@ app.use("/api/posts", postsApiRoute);
 // Tells app.js to use the const "postsApiRoute" that points to the routes/api/posts.js file's code, to handle any request to "/posts/api" route.
 
 
-app.get("/home", (req, res, next) => {
+app.get("/home", middleware.requireLogin, (req, res, next) => {
 
     var payload = {
         pageTitle: "Home",
