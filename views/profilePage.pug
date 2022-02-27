@@ -1,5 +1,8 @@
 extends layouts/main-layout.pug
 block content
+    script.
+        var profileUserId = "!{profileUser._id}";
+
     h1.profilePageH1 This is an h1 in the profilePage.pug page
     //- p Username of logged in user: #{userLoggedIn.username}
     
@@ -8,11 +11,12 @@ block content
         div.profilePageImageContainer
             img(src=profileUser.profilePic, alt="User profile image")
         div.userDetailsContainer
-            span.profPageDisplayName #{profileUser.firstName} #{profileUser.lastName}
             span.profPageUsername #{profileUser.username}
+            span.profPageDisplayName #{profileUser.firstName} #{profileUser.lastName}
+            span.profPageDisplayEmail #{profileUser.email}
 
     div.postsContainer
     //- contains all the posts 
 
 block scripts
-    script(src="/js/profile.js") 
+    script(src="/js/profile.js")
