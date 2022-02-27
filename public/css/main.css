@@ -16,10 +16,11 @@
             background-color: white;
         }
     .textareaContainer {
-        
+        height: auto;
     }
         .textareaContainer textarea{
-            width:100%;
+            width:340px;
+            height: 150px;
             border: none;
             resize: none;
             font-size: 19px;
