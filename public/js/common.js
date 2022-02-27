@@ -23,6 +23,13 @@ $("#postTextarea").keyup((event) => {
         // Checks if the value in the textbox is empty, and sets the submit button to disabled if it is.
     }
 
+    if (value.length > 140 ){
+    // Disables the submit button if content in form is more than 140 characters.
+    
+        submitButton.prop("disabled", true);
+        return;
+    }
+
     submitButton.prop("disabled", false);
     return;
     // Checks if the value in the textbox is empty, and sets the submit button to enabled if it's not empty.
