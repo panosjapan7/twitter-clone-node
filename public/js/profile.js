@@ -5,7 +5,7 @@ $(document).ready(() => {
 })
 
 function loadPosts(){
-    $.get("/api/posts", { postedBy: profileUserId }, (results) => {
+    $.get("/api/posts", (results) => {
     // Gets the contents of "api/posts" endpoint and when it's done it will return with 
         // the contents of postData and then it will execute the code below
         // console.log(profileUserId)
@@ -34,8 +34,9 @@ function outputPosts(results, container) {
         container.append(html);
         // Adds every tweet inside the container, with the most recent tweet added last.
     }
-    console.log(`profileUserId: ${profileUserId}`)    
-    console.log(`result._id: ${result._id}`)
+    console.log(result.postedBy.password)
+    // console.log(`profileUserId: ${profileUserId}`)    
+    // console.log(`result._id: ${result._id}`)
     });
 
     if(results.length == 0) {
