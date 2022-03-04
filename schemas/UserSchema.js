@@ -19,12 +19,16 @@ const UserSchema = new  Schema({
     firstName: {
         type: String,
         // trim: true,
-        // default: "Anonymous"
+        default: "No first name given"
     },
     lastName: {
         type: String,
         // trim: true,
-        // default: "Anonymous"
+        default: "No last name given"
+    },
+    email: {
+        type: String,
+        default: "no email"
     },
     profilePic: {
         type: String,
