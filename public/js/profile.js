@@ -12,7 +12,8 @@ function loadPosts(){
         outputPosts(results, $(".postsContainer"));
         // We're passing in the div "postsContainer" from home.pug  
     })
-}
+} 
+
 
 function outputPosts(results, container) {
     
