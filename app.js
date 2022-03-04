@@ -1,7 +1,7 @@
 // Fifth attempt at creating a Twitter clone for the Backend 1 exercise
 // I tried doing it with .ejs files but had problem injecting code to HTML elements; it's much easier with PUG.
 // I tried using the strategies and code we use in the lektioner but haven't understood much.
-// I'll be using internet tutorials to try and solve this puzzle.
+// I'll be using internet tutorials to try and complete this uppgift.
 
 const express = require("express");
 // Declares Express dependency and tells Node that we're using Express with this file.
@@ -78,6 +78,9 @@ const profileRoute = require("./routes/profileRoutes");
 // API ROUTES
 const postsApiRoute = require("./routes/api/posts.js");
 // Declares the postsApiRoute
+const usersApiRoute = require("./routes/api/users.js");
+// Declares the postsApiRoute
+// I wrote this code to try to send the MongoDB "users" data to the profile page, but not sure how to do it.
 
 app.use("/login", loginRoute);
 // Tells app.js to use the const "loginRoute" that points to the loginRoutes.js file's code, to handle any request to "/login" route.
@@ -95,7 +98,10 @@ app.use("/profile", middleware.requireLogin, profileRoute);
 
 // app.use for API
 app.use("/api/posts", postsApiRoute);
-// Tells app.js to use the const "postsApiRoute" that points to the routes/api/posts.js file's code, to handle any request to "/posts/api" route.
+// Tells app.js to use the const "postsApiRoute" that points to the routes/api/posts.js file's code, to handle any request to "/api/posts/" route.
+app.use("/api/users", usersApiRoute);
+// Tells app.js to use the const "usersApiRoute" that points to the routes/api/users.js file's code, to handle any request to "/api/users/" route.
+// I wrote this code to try to send the MongoDB "users" data to the profile page, but not sure how to do it.
 
 
 app.get("/home", middleware.requireLogin, (req, res, next) => {
