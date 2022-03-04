@@ -1,4 +1,4 @@
-// I made this file to try to send the MongoDB "users" data to the profile page, but not sure how to do it.
+// I made this file to try to fetch and end the MongoDB "users" data to the profile page, but not sure how to do it.
 
 
 const express = require("express");
