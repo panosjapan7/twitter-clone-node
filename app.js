@@ -100,8 +100,8 @@ app.use("/profile", middleware.requireLogin, profileRoute);
 app.use("/api/posts", postsApiRoute);
 // Tells app.js to use the const "postsApiRoute" that points to the routes/api/posts.js file's code, to handle any request to "/api/posts/" route.
 app.use("/api/users", usersApiRoute);
-// Tells app.js to use the const "usersApiRoute" that points to the routes/api/users.js file's code, to handle any request to "/api/users/" route.
 // I wrote this code to try to send the MongoDB "users" data to the profile page, but not sure how to do it.
+// Tells app.js to use the const "usersApiRoute" that points to the routes/api/users.js file's code, to handle any request to "/api/users/" route.
 
 
 app.get("/home", middleware.requireLogin, (req, res, next) => {

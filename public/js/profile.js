@@ -22,6 +22,7 @@ function outputPosts(results, container) {
 
     results.forEach((result) => {
     // Loops over every sinlge one of the results and output it.
+    
     console.log(result)
     if(profileUserId === result.postedBy._id){
     // Checks if the id of the user whose page we are at right now is the same as the id of the creator of a post.
