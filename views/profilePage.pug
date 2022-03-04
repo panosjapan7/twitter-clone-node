@@ -19,7 +19,10 @@ block content
             //- Checks if we are on our own profile page. If yes, we can change the profile photo.  
         div.userDetailsContainer
             span.profPageUsername #{profileUser.username}
-            span.profPageDisplayName #{profileUser.firstName} #{profileUser.lastName}
+            br
+            br
+            span.profPageDisplayName First name: #{profileUser.firstName} Last name: #{profileUser.lastName}
+            br
             span.profPageDisplayEmail #{profileUser.email}
 
     div.postsContainer
