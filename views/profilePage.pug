@@ -4,7 +4,7 @@ block content
         var profileUserId = "!{profileUser._id}";
 
     h1.profilePageH1 This is an h1 in the profilePage.pug page
-    //- p Username of logged in user: #{userLoggedIn.username}
+
     
 
     div.profPageUserUserContainer
@@ -21,9 +21,12 @@ block content
             span.profPageUsername #{profileUser.username}
             br
             br
-            span.profPageDisplayName First name: #{profileUser.firstName} Last name: #{profileUser.lastName}
-            br
-            span.profPageDisplayEmail #{profileUser.email}
+            p First Name: #{userLoggedIn.firstName}
+            p Last Name: #{userLoggedIn.lastName}
+            p Email: #{userLoggedIn.email}
+            //- span.profPageDisplayName First name: #{profileUser.firstName} Last name: #{profileUser.lastName}
+            //- br
+            //- span.profPageDisplayEmail #{profileUser.email}
 
     div.postsContainer
     //- contains all the posts 
@@ -33,6 +36,7 @@ block content
         function openDialog(){
             document.getElementById("fileId").click();
         }
+
 
 block scripts
     script(src="/js/profile.js")
