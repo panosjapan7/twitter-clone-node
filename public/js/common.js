@@ -68,8 +68,6 @@ $("#submitPostButton").click(() => {
 
 })
 
-
-
 function createPostHtml(postData) {
     
     var postedBy = postData.postedBy;
