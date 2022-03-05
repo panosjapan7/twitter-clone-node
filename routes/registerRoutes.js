@@ -40,15 +40,16 @@ router.post("/", async (req, res, next) => {
         console.log(req.body);
         var username = req.body.username.trim();
         var password = req.body.password;
+        //Prevents the user from registering with a username or password that is a string that consists of spaces.
+        // trim() removes spaces before and after a string value
 
+        
         // Not sure if I need these two variable below
         var firstName = req.body.firstName;
         var lastName = req.body.lastName;
-
-        //Prevents the user from registering with a username or password that is a string that consists of spaces.
-        // trim() removes spaces before and after a string value
+        
         var payload = req.body;
-        // Variables that contains all the values that the user submitted via the form.
+        // Variable that contains all the values that the user submitted via the form.
 
 
         // CHECKS IF A USER WAS FOUND
@@ -112,12 +113,10 @@ router.post("/", async (req, res, next) => {
             res.status(200).render("register.pug", payload);
             // Renders again the register web page, so that the user can try to register again and 
             // sends the payload to that page; the payload now contains the errorMessage value.
+            //200 HTTP response is for 'success'; it means all is okay.
         }
-
-        //200 HTTP response is for 'success'; it means all is okay.
-        // When we do a POST submission in this route ("/" which is /register), it will render the register.pug page.
     
-    });
+});
 
 module.exports = router;
 // Exports the router so we can execute the code that's in router.get in other pages.
