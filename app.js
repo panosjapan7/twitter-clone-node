@@ -105,6 +105,8 @@ app.use("/api/users", usersApiRoute);
 
 
 app.get("/home", middleware.requireLogin, (req, res, next) => {
+// When someone accesses the server we use with a GET request and the path is the root of the website ("/"), execute the code that's in the arrow function.
+// req(the request that's incoming to this path "/"), res(response -  the data we send back to the user), next(handles any middleware)
 
     var payload = {
         pageTitle: "Home",
@@ -118,5 +120,3 @@ app.get("/home", middleware.requireLogin, (req, res, next) => {
     //Sends the payload object to the page home.ejs
 
 });
-// When someone accesses the server we use with a GET request and the path is the root of the website ("/"), execute the code that's in the arrow function.
-// req(the request that's incoming to this path "/"), res(response -  the data we send back to the user), next(handles any middleware)
