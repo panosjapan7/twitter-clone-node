@@ -12,6 +12,9 @@ const bcrypt = require("bcrypt");
 const User = require("../schemas/UserSchema"); 
 // Allows us to user the UserSchema from this file.
 
+// TRYING TO UPDATE FIRST NAME
+app.use(bodyParser.urlencoded({extended: false}))
+
 router.get("/", (req, res, next) => {
     // Configures the router we created (const router = express.Router();) 
         // to handle requests at the root level ("/:id") to execute the code that's in it.
@@ -43,6 +46,27 @@ router.get("/:username", async (req, res, next) => {
     res.status(200).render("profilePage", payload);
     
 });
+
+
+// TRYING TO UPDATE FIRST NAME
+router.post("/", async (req, res, next) => {
+    // console.log(req.body);
+
+    var firstName = req.body.firstName.trim();
+
+    var payload = req.body;
+    console.log(payload)
+
+    if(firstName){
+        
+        console.log(firstName)
+        // firstName = await User.updateOne({_id: }, {firstName: req.body.firstName})
+        // res.status(200).render("profilePage");
+    }
+    
+});
+
+
 
 async function getPayload(username, userLoggedIn){
     
