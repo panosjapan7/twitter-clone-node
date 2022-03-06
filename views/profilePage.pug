@@ -22,6 +22,10 @@ block content
             br
             br
             p First Name: #{userLoggedIn.firstName}
+            form#updateUserDetailsForm(action="", method="post", onsubmite="event.preventDefault(); updateFirstName();")
+                input#firstNameUpdate(type="text", name="firstName", placeholder="Update First Name")
+                input(type="submit", value="Update First Name")
+            br
             p Last Name: #{userLoggedIn.lastName}
             p Email: #{userLoggedIn.email}
             //- span.profPageDisplayName First name: #{profileUser.firstName} Last name: #{profileUser.lastName}
@@ -35,6 +39,11 @@ block content
         document.getElementById("buttonId").addEventListener("click", openDialog);
         function openDialog(){
             document.getElementById("fileId").click();
+        }
+        var firstNameUpdate = document.getElementById("firstNameUpdate")
+        var updateUserDetailsForm = document.getElementById("updateUserDetailsForm")
+        function updateFirstName(){
+            updateUserDetailsForm.submit();
         }
 
 
