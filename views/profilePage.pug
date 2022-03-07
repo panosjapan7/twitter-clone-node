@@ -23,9 +23,9 @@ block content
             br
             //- TRYING TO UPDATE FIRST NAME
             p First Name: #{userLoggedIn.firstName}
-            form#updateUserDetailsForm(action="", method="post", onsubmite="event.preventDefault(); updateFirstName();")
+            form#updateUserDetailsForm(action="", method="post", onsubmit="event.preventDefault(); updateFirstName();")
                 input#firstNameUpdate(type="text", name="firstName", placeholder="Update First Name")
-                input(type="submit", value="Update First Name")
+                input#firstNameUpdateButton(type="submit", value="Update First Name")
             br
 
             p Last Name: #{userLoggedIn.lastName}

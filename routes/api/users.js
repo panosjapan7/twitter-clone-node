@@ -35,6 +35,19 @@ router.get("/", async (req, res, next) => {
 
 });
 
+
+// TRYING TO UPDATE THE FIRST NAME
+router.put("/profile", async (req, res) => {
+    User.findByIdAndUpdate(req.params.firstName, req.body.firstName)
+    .then(results => res.sendStatus(204))
+    .catch(error => {
+        console.log(error);
+        res.sendStatus(400);
+    })
+})
+
+
+
 module.exports = router;
 // Exports the router so we can execute the code that's in router.get in other pages.
 

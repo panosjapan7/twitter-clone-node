@@ -1,5 +1,32 @@
 // JavaScript file only for the profile page
 
+// TRYING TO UPDATE THE FIRST NAME
+$("#firstNameUpdateButton").click(() => {
+    var firstName = $("#firstNameUpdate").val().trim();
+    // console.log(firstName);
+    console.log(`profileUserId ${profileUserId}`)
+    $.ajax({
+        url: "/api/users/" + profileUserId,
+        type: "PUT",
+        data: { firstName: firstName},
+        success: (data, status, xhr) => {
+            if(xhr.status != 204){
+                alert("could not update")
+            }
+            else{
+                location.reload();
+            }
+        }
+    })
+}) 
+
+
+
+
+
+
+
+
 $(document).ready(() => {
     loadPosts();
 })
