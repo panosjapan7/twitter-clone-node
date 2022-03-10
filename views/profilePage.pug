@@ -20,27 +20,37 @@ block content
             br
             br
             //- TRYING TO UPDATE FIRST NAME
-            p First Name: #{userLoggedIn.firstName}
-            form#updateUserDetailsForm(action="", method="post", onsubmit="event.preventDefault(); updateFirstName();")
-                input#firstNameUpdate(type="text", name="firstName", placeholder="Update First Name")
-                input#firstNameUpdateButton(type="submit", value="Update First Name")
-            br
-            //- TRYING TO UPDATE LAST NAME
-            p Last Name: #{userLoggedIn.lastName}
-            form#updateLastNameForm(action="", method="post", onsubmit="event.preventDefault(); updateLastName();")
-                input#lastNameUpdate(type="text", name="lastName", placeholder="Update Last Name")
-                input#lastNameUpdateButton(type="submit", value="Update Last Name")
-            br
-
-            //- TRYING TO UPDATE LAST NAME
-            p Email: #{userLoggedIn.email}
-            form#updateEmailForm(action="", method="post", onsubmit="event.preventDefault(); updateEmail();")
-                input#emailUpdate(type="text", name="email", placeholder="Update Email")
-                input#emailUpdateButton(type="submit", value="Update Email")
-
-            //- span.profPageDisplayName First name: #{profileUser.firstName} Last name: #{profileUser.lastName}
+            //- p First Name: #{userLoggedIn.firstName}
+            //- form#updateUserDetailsForm(action="", method="post", onsubmit="event.preventDefault(); updateFirstName();")
+            //-     input#firstNameUpdate(type="text", name="firstName", placeholder="Update First Name")
+            //-     input#firstNameUpdateButton(type="submit", value="Update First Name")
             //- br
-            //- span.profPageDisplayEmail #{profileUser.email}
+            //- //- TRYING TO UPDATE LAST NAME
+            //- p Last Name: #{userLoggedIn.lastName}
+            //- form#updateLastNameForm(action="", method="post", onsubmit="event.preventDefault(); updateLastName();")
+            //-     input#lastNameUpdate(type="text", name="lastName", placeholder="Update Last Name")
+            //-     input#lastNameUpdateButton(type="submit", value="Update Last Name")
+            //- br
+
+            //- //- TRYING TO UPDATE EMAIL
+            //- p Email: #{userLoggedIn.email}
+            //- form#updateEmailForm(action="", method="post", onsubmit="event.preventDefault(); updateEmail();")
+            //-     input#emailUpdate(type="text", name="email", placeholder="Update Email")
+            //-     input#emailUpdateButton(type="submit", value="Update Email")
+
+            //- TRYING TO UPDATE ALL VALUES WITH ONE FORM
+            p First Name: #{profileUser.firstName}
+            p Last Name: #{profileUser.lastName}
+            p Email: #{profileUser.email}
+            if profileUser._id == userLoggedIn._id
+                form#updateUserDetailsForm(action="", method="post", onsubmit="event.preventDefault(); updateForm();")
+                    input#firstNameUpdate(type="text", name="firstName", placeholder="Update First Name")
+                    br  
+                    input#lastNameUpdate(type="text", name="lastName", placeholder="Update Last Name")
+                    br
+                    input#emailUpdate(type="text", name="email", placeholder="Update Email")
+                    br
+                    input#formUpdateButton(type="submit", value="Update User Details")
 
     div.postsContainer
     //- contains all the posts 
@@ -51,26 +61,35 @@ block content
             document.getElementById("fileId").click();
         }
 
-        //- TRYING TO UPDATE FIRST NAME
+        // - TRYING TO UPDATE ALL VALUES WITH ONE FORM
         var firstNameUpdate = document.getElementById("firstNameUpdate")
+        var lastNameUpdate = document.getElementById("lastNameUpdate")
+        var emailUpdate = document.getElementById("emailUpdate")
         var updateUserDetailsForm = document.getElementById("updateUserDetailsForm")
-        function updateFirstName(){
+        function updateForm(){
             updateUserDetailsForm.submit();
         }
 
-         //- TRYING TO UPDATE FIRST NAME
-        var lastNameUpdate = document.getElementById("lastNameUpdate")
-        var updateLastNameForm = document.getElementById("updateLastNameForm")
-        function updateLastName(){
-            updateLastNameForm.submit();
-        }
+        //- TRYING TO UPDATE FIRST NAME
+        //- var firstNameUpdate = document.getElementById("firstNameUpdate")
+        //- var updateUserDetailsForm = document.getElementById("updateUserDetailsForm")
+        //- function updateFirstName(){
+        //-     updateUserDetailsForm.submit();
+        //- }
 
-         //- TRYING TO UPDATE EMAIL
-        var emailUpdate = document.getElementById("emailUpdate")
-        var updateEmailForm = document.getElementById("updateEmailForm")
-        function updateEmail(){
-            updateEmailForm.submit();
-        }
+        //-  //- TRYING TO UPDATE FIRST NAME
+        //- var lastNameUpdate = document.getElementById("lastNameUpdate")
+        //- var updateLastNameForm = document.getElementById("updateLastNameForm")
+        //- function updateLastName(){
+        //-     updateLastNameForm.submit();
+        //- }
+
+        //-  //- TRYING TO UPDATE EMAIL
+        //- var emailUpdate = document.getElementById("emailUpdate")
+        //- var updateEmailForm = document.getElementById("updateEmailForm")
+        //- function updateEmail(){
+        //-     updateEmailForm.submit();
+        //- }
 
 
 block scripts
