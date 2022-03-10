@@ -15,20 +15,20 @@ const User = require("../schemas/UserSchema");
 // TRYING TO UPDATE FIRST NAME
 app.use(bodyParser.urlencoded({extended: false}))
 
-router.get("/", (req, res, next) => {
+router.get("/", async (req, res, next) => {
     // Configures the router we created (const router = express.Router();) 
         // to handle requests at the root level ("/:id") to execute the code that's in it.
     // We use router.get and not app.get because the page handles a GET request at the root level,
         // it's not handling traffic to the server (app.get() is doing that).
     // The router.get executes the code below.
     
+    const user = await User.findById(req.session.user._id)
     var payload = {
-        pageTitle: req.session.user.username,
-        userLoggedIn: req.session.user,
-        userLoggedInJs: JSON.stringify(req.session.user),
-        profileUser: req.session.user
+        pageTitle: user.username,
+        userLoggedIn: user,
+        userLoggedInJs: JSON.stringify(user),
+        profileUser: user
     }
-
     res.status(200).render("profilePage", payload);
     
 });
@@ -51,18 +51,31 @@ router.get("/:username", async (req, res, next) => {
 // TRYING TO UPDATE FIRST NAME
 router.post("/", async (req, res, next) => {
     // console.log(req.body);
-
-    var firstName = req.body.firstName.trim();
+    if(firstName){
+        var firstName = req.body.firstName.trim();
+    }
+    if(lastName){
+        var lastName = req.body.lastName.trim();
+    }
+    if(email){
+        var email = req.body.email.trim();
+    }
 
     var payload = req.body;
     console.log(payload)
 
     if(firstName){
-        
         console.log(firstName)
-        // firstName = await User.updateOne({_id: }, {firstName: req.body.firstName})
-        // res.status(200).render("profilePage");
     }
+
+    if(lastName){
+        console.log(lastName)
+    }
+
+    if(email){    
+        console.log(email)
+    }
+    
     
 });
 
