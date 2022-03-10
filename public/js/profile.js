@@ -20,8 +20,44 @@ $("#firstNameUpdateButton").click(() => {
     })
 }) 
 
+// TRYING TO UPDATE THE LAST NAME
+$("#lastNameUpdateButton").click(() => {
+    var lastName = $("#lastNameUpdate").val().trim();
+    // console.log(firstName);
+    console.log(`profileUserId ${profileUserId}`)
+    $.ajax({
+        url: "/api/users/" + profileUserId,
+        type: "PUT",
+        data: { lastName: lastName},
+        success: (data, status, xhr) => {
+            if(xhr.status != 204){
+                alert("could not update")
+            }
+            else{
+                location.reload();
+            }
+        }
+    })
+}) 
 
-
+// TRYING TO UPDATE THE EMAIL
+$("#emailUpdateButton").click(() => {
+    var email = $("#emailUpdate").val().trim();
+    console.log(`profileUserId ${profileUserId}`)
+    $.ajax({
+        url: "/api/users/" + profileUserId,
+        type: "PUT",
+        data: { email: email},
+        success: (data, status, xhr) => {
+            if(xhr.status != 204){
+                alert("could not update")
+            }
+            else{
+                location.reload();
+            }
+        }
+    })
+}) 
 
 
 
