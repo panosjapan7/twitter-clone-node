@@ -51,30 +51,32 @@ router.get("/:username", async (req, res, next) => {
 // TRYING TO UPDATE FIRST NAME
 router.post("/", async (req, res, next) => {
     // console.log(req.body);
-    if(firstName){
-        var firstName = req.body.firstName.trim();
-    }
-    if(lastName){
-        var lastName = req.body.lastName.trim();
-    }
-    if(email){
-        var email = req.body.email.trim();
-    }
+    // if(firstName){
+    //     var firstName = req.body.firstName.trim();
+    // }
+    // if(lastName){
+    //     var lastName = req.body.lastName.trim();
+    // }
+    // if(email){
+    //     var email = req.body.email.trim();
+    // }
 
-    var payload = req.body;
-    console.log(payload)
+    // var payload = req.body;
+    // console.log(payload)
 
-    if(firstName){
-        console.log(firstName)
-    }
+    
+    // if(firstName){
+    //     console.log(firstName)
+    // }
 
-    if(lastName){
-        console.log(lastName)
-    }
-
-    if(email){    
-        console.log(email)
-    }
+    // if(lastName){
+    //     console.log(lastName)
+    // }
+    
+    // if(email){
+        
+    //     console.log(email)
+    // }
     
     
 });
