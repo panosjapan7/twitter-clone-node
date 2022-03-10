@@ -5,8 +5,6 @@ block content
 
     h1.profilePageH1 This is an h1 in the profilePage.pug page
 
-    
-
     div.profPageUserUserContainer
         div.profilePageImageContainer
             img(src=profileUser.profilePic, alt="User profile image")
@@ -27,9 +25,19 @@ block content
                 input#firstNameUpdate(type="text", name="firstName", placeholder="Update First Name")
                 input#firstNameUpdateButton(type="submit", value="Update First Name")
             br
-
+            //- TRYING TO UPDATE LAST NAME
             p Last Name: #{userLoggedIn.lastName}
+            form#updateLastNameForm(action="", method="post", onsubmit="event.preventDefault(); updateLastName();")
+                input#lastNameUpdate(type="text", name="lastName", placeholder="Update Last Name")
+                input#lastNameUpdateButton(type="submit", value="Update Last Name")
+            br
+
+            //- TRYING TO UPDATE LAST NAME
             p Email: #{userLoggedIn.email}
+            form#updateEmailForm(action="", method="post", onsubmit="event.preventDefault(); updateEmail();")
+                input#emailUpdate(type="text", name="email", placeholder="Update Email")
+                input#emailUpdateButton(type="submit", value="Update Email")
+
             //- span.profPageDisplayName First name: #{profileUser.firstName} Last name: #{profileUser.lastName}
             //- br
             //- span.profPageDisplayEmail #{profileUser.email}
@@ -48,6 +56,20 @@ block content
         var updateUserDetailsForm = document.getElementById("updateUserDetailsForm")
         function updateFirstName(){
             updateUserDetailsForm.submit();
+        }
+
+         //- TRYING TO UPDATE FIRST NAME
+        var lastNameUpdate = document.getElementById("lastNameUpdate")
+        var updateLastNameForm = document.getElementById("updateLastNameForm")
+        function updateLastName(){
+            updateLastNameForm.submit();
+        }
+
+         //- TRYING TO UPDATE EMAIL
+        var emailUpdate = document.getElementById("emailUpdate")
+        var updateEmailForm = document.getElementById("updateEmailForm")
+        function updateEmail(){
+            updateEmailForm.submit();
         }
 
 
