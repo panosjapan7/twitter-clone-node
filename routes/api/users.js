@@ -36,7 +36,7 @@ router.get("/", async (req, res, next) => {
 });
 
 
-// TRYING TO UPDATE THE FIRST NAME
+// UPDATES FIRST NAME, LAST NAME, EMAIL
 router.put("/:userId", async (req, res) => {
     User.findByIdAndUpdate(req.params.userId, {firstName: req.body.firstName, lastName: req.body.lastName, email: req.body.email})
     .then(results => res.sendStatus(204))
