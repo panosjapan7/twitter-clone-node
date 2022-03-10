@@ -1,62 +1,121 @@
 // JavaScript file only for the profile page
 
 // TRYING TO UPDATE THE FIRST NAME
-$("#firstNameUpdateButton").click(() => {
+// $("#firstNameUpdateButton").click(() => {
+//     var firstName = $("#firstNameUpdate").val().trim();
+//     // console.log(firstName);
+//     console.log(`profileUserId ${profileUserId}`)
+//     $.ajax({
+//         url: "/api/users/" + profileUserId,
+//         type: "PUT",
+//         data: { firstName: firstName},
+//         success: (data, status, xhr) => {
+//             if(xhr.status != 204){
+//                 alert("could not update")
+//             }
+//             else{
+//                 location.reload();
+//             }
+//         }
+//     })
+// }) 
+
+// // TRYING TO UPDATE THE LAST NAME
+// $("#lastNameUpdateButton").click(() => {
+//     var lastName = $("#lastNameUpdate").val().trim();
+//     // console.log(firstName);
+//     console.log(`profileUserId ${profileUserId}`)
+//     $.ajax({
+//         url: "/api/users/" + profileUserId,
+//         type: "PUT",
+//         data: { lastName: lastName},
+//         success: (data, status, xhr) => {
+//             if(xhr.status != 204){
+//                 alert("could not update")
+//             }
+//             else{
+//                 location.reload();
+//             }
+//         }
+//     })
+// }) 
+
+// // TRYING TO UPDATE THE EMAIL
+// $("#emailUpdateButton").click(() => {
+//     var email = $("#emailUpdate").val().trim();
+//     console.log(`profileUserId ${profileUserId}`)
+//     $.ajax({
+//         url: "/api/users/" + profileUserId,
+//         type: "PUT",
+//         data: { email: email},
+//         success: (data, status, xhr) => {
+//             if(xhr.status != 204){
+//                 alert("could not update")
+//             }
+//             else{
+//                 location.reload();
+//             }
+//         }
+//     })
+// }) 
+
+// TRYING TO UPDATE ALL VALUES WITH ONE FORM
+$("#formUpdateButton").click(() => {
+    
     var firstName = $("#firstNameUpdate").val().trim();
-    // console.log(firstName);
-    console.log(`profileUserId ${profileUserId}`)
-    $.ajax({
-        url: "/api/users/" + profileUserId,
-        type: "PUT",
-        data: { firstName: firstName},
-        success: (data, status, xhr) => {
-            if(xhr.status != 204){
-                alert("could not update")
-            }
-            else{
-                location.reload();
-            }
-        }
-    })
-}) 
-
-// TRYING TO UPDATE THE LAST NAME
-$("#lastNameUpdateButton").click(() => {
     var lastName = $("#lastNameUpdate").val().trim();
-    // console.log(firstName);
-    console.log(`profileUserId ${profileUserId}`)
-    $.ajax({
-        url: "/api/users/" + profileUserId,
-        type: "PUT",
-        data: { lastName: lastName},
-        success: (data, status, xhr) => {
-            if(xhr.status != 204){
-                alert("could not update")
-            }
-            else{
-                location.reload();
-            }
-        }
-    })
-}) 
-
-// TRYING TO UPDATE THE EMAIL
-$("#emailUpdateButton").click(() => {
     var email = $("#emailUpdate").val().trim();
+    
     console.log(`profileUserId ${profileUserId}`)
-    $.ajax({
-        url: "/api/users/" + profileUserId,
-        type: "PUT",
-        data: { email: email},
-        success: (data, status, xhr) => {
-            if(xhr.status != 204){
-                alert("could not update")
+
+    // If firstName is not an empty value then it will update the firstName in the database
+    if(firstName){
+        $.ajax({
+            url: "/api/users/" + profileUserId,
+            type: "PUT",
+            data: {firstName: firstName},
+            success: (data, status, xhr) => {
+                if(xhr.status != 204){
+                    alert("could not update")
+                }
+                else{
+                    location.reload();
+                }
             }
-            else{
-                location.reload();
+        })
+    }
+    // If lastName is not an empty value then it will update the lastName in the database
+    if(lastName){
+        $.ajax({
+            url: "/api/users/" + profileUserId,
+            type: "PUT",
+            data: {lastName: lastName},
+            success: (data, status, xhr) => {
+                if(xhr.status != 204){
+                    alert("could not update")
+                }
+                else{
+                    location.reload();
+                }
             }
-        }
-    })
+        })
+    }
+    // If email is not an empty value then it will update the email in the database
+    if(email){
+        $.ajax({
+            url: "/api/users/" + profileUserId,
+            type: "PUT",
+            data: {email: email},
+            success: (data, status, xhr) => {
+                if(xhr.status != 204){
+                    alert("could not update")
+                }
+                else{
+                    location.reload();
+                }
+            }
+        })
+    }
 }) 
 
 
