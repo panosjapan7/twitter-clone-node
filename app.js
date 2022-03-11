@@ -153,7 +153,8 @@ app.get("/home", middleware.requireLogin, (req, res, next) => {
             } 
             else {
                 console.log(req.file);
-                // res.send("test");
+                // console.log(req.file.path);
+
                 return res.redirect("/profile");
             }
         });
