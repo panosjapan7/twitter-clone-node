@@ -120,3 +120,41 @@ app.get("/home", middleware.requireLogin, (req, res, next) => {
     //Sends the payload object to the page home.ejs
 
 });
+
+
+
+// TRY TO USE MULTE TO SAVE A FILE TO public/uploads
+// SO far: Able to save the file to public/uploads, 
+    // req.file has all the info I need (req.file.path) 
+    // so I need to do a PUT that changes the path of the current user's profilePic value in the MongoDB db.
+    const multer = require("multer");
+    
+    //Set Storage Engine
+    const storage = multer.diskStorage({
+        destination: "./public/uploads",
+        filename: function(req, file, cb){
+            cb(null, file.fieldname + "-" + Date.now() + path.extname(file.originalname))
+        }
+    })
+    //Init upload variable
+    const upload = multer({
+        storage: storage
+    }).single("myImage");
+
+    app.get("/profile", (req, res) => {
+        res.render("profilePage");
+    })
+
+    app.post("/upload", (req, res) => {
+        // res.send("test");
+        upload(req, res, (err) => {
+            if(err) {
+                console.log(err)
+            } 
+            else {
+                console.log(req.file);
+                // res.send("test");
+                return res.redirect("/profile");
+            }
+        });
+    });

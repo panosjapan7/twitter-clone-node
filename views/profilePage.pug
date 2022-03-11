@@ -7,12 +7,20 @@ block content
 
     div.profPageUserUserContainer
         div.profilePageImageContainer
+
+
+
             img(src=profileUser.profilePic, alt="User profile image")
             br
             //- Checks if we are on our own profile page. If yes, we can change the profile photo.  
             if profileUser._id == userLoggedIn._id
-                input#fileId(type="file", hidden)
-                input#buttonId(type="button", value="Upload Pic")
+                form(action="/upload", method="POST", enctype="multipart/form-data") 
+                    input(type="file", name="myImage")
+                    br
+                    button(type="submit") Submit Trav
+                
+                //- input#fileId(type="file", hidden)
+                //- input#buttonId(type="button", value="Upload Pic")
                     
             
         div.userDetailsContainer
