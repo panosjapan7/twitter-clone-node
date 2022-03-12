@@ -128,6 +128,7 @@ app.get("/home", middleware.requireLogin, (req, res, next) => {
     // req.file has all the info I need (req.file.path) 
     // so I need to do a PUT that changes the path of the current user's profilePic value in the MongoDB db.
     const multer = require("multer");
+    const User = require("./schemas/UserSchema"); 
     
     //Set Storage Engine
     const storage = multer.diskStorage({
@@ -145,17 +146,25 @@ app.get("/home", middleware.requireLogin, (req, res, next) => {
         res.render("profilePage");
     })
 
-    app.post("/upload", (req, res) => {
+    app.post("/upload", async (req, res) => {
         // res.send("test");
-        upload(req, res, (err) => {
+        const user = await User.findById(req.session.user._id);
+        console.log(user);
+        
+        upload(req, res, async (err) => {
             if(err) {
                 console.log(err)
             } 
             else {
+                
                 console.log(req.file);
                 // console.log(req.file.path);
-
-                return res.redirect("/profile");
+                user.profilePic = `uploads/${req.file.filename}`;
+                console.log(user.profilePic)
+                await user.save();
+                console.log(user);
+                console.log(user.profilePic);
+                res.redirect("/profile");
             }
         });
     });
