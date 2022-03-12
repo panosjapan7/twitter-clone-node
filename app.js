@@ -123,10 +123,7 @@ app.get("/home", middleware.requireLogin, (req, res, next) => {
 
 
 
-// TRY TO USE MULTE TO SAVE A FILE TO public/uploads
-// SO far: Able to save the file to public/uploads, 
-    // req.file has all the info I need (req.file.path) 
-    // so I need to do a PUT that changes the path of the current user's profilePic value in the MongoDB db.
+// TRY TO USE MULTER TO SAVE A FILE TO public/uploads
     const multer = require("multer");
     const User = require("./schemas/UserSchema"); 
     
@@ -146,6 +143,7 @@ app.get("/home", middleware.requireLogin, (req, res, next) => {
         res.render("profilePage");
     })
 
+    // Changes the profile pic by changing the profilePic value in MongoDB
     app.post("/upload", async (req, res) => {
         // res.send("test");
         const user = await User.findById(req.session.user._id);
